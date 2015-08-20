@@ -13,14 +13,16 @@
 
   .node {
   white-space: nowrap;
+  padding: 5px;
   }
 
   .node rect,
   .node circle,
   .node ellipse {
   stroke: #333;
-  fill: #fff;
+  fill: #7f7;
   stroke-width: 1.5px;
+  padding: 5px;
   }
 
   .cluster rect {
@@ -83,15 +85,23 @@ var inputGraphRaw = document.querySelector("#inputGraph").value;
 var inputGraph = JSON.parse(inputGraphRaw);
 
 var vertexId = 0;
-inputGraph.vertices.forEach(function(vertex) { g.setNode(vertexId, { label: vertex.name + "\n" + vertex.result.substr(0, 20) }); vertexId+=1; });
-inputGraph.edges.forEach(function(edge) {g.setEdge(edge[0], edge[1], {label : ""});});
-// Set some general styles
-g.nodes().forEach(function(v) {
-  var node = g.node(v);
-  node.rx = node.ry = 5;
-  node.style = "fill: #7f7";
-});
+inputGraph.vertices.forEach(function(vertex) { 
+  label = "<h3>" + vertex.name + "</h3>";
+  label += vertex.result.substr(0, 20);
 
+  g.setNode(vertexId, 
+      {
+        labelType: "html",
+        label: label,
+        rx: 5,
+        ry: 5,
+        padding: 0,
+        class: "node"
+      }
+    );  
+  vertexId+=1;
+});
+inputGraph.edges.forEach(function(edge) {g.setEdge(edge[0], edge[1], {label : ""});});
 var svg = d3.select("svg"),
     inner = svg.select("g");
 
