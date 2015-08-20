@@ -23,6 +23,18 @@
   stroke-width: 1.5px;
   }
 
+  .node h2 {
+    color: red;
+    font-size: 22pt;
+    text-align: center;
+  }
+
+  .node h3 {
+    color: blue;
+    font-size: 14pt;
+    text-align: center;
+  }
+
   .cluster rect {
   stroke: #333;
   fill: #000;
@@ -84,12 +96,12 @@ var inputGraph = JSON.parse(inputGraphRaw);
 
 var vertexId = 0;
 inputGraph.vertices.forEach(function(vertex) { 
-  label = "<h3>" + vertex.name + "</h3>";
+  label = "<h2>" + vertex.name + "</h2>";
   result = vertex.result
   if (result.length > 50) {
     result = result.substr(0, 50) + "...";
   }
-  label += result;
+  label += "<h3>" + result + "</h3>";
 
   g.setNode(vertexId, 
       {
@@ -97,7 +109,7 @@ inputGraph.vertices.forEach(function(vertex) {
         label: label,
         rx: 5,
         ry: 5,
-        padding: 0,
+        padding: 10,
         class: "node"
       }
     );  
