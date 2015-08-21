@@ -30,6 +30,14 @@
     fill: #94e2f9;
   }
 
+  .nodeNoException h3 {
+    color: #3366CC;
+  }
+
+  .nodeException h3 {
+    color: #E60000;
+  }
+
   .node h2 {
     color: #000000;
     font-size: 20pt;
@@ -37,11 +45,9 @@
   }
 
   .node h3 {
-    color: blue;
     font-size: 16pt;
     text-align: center;
   }
-
 
   .cluster rect {
   stroke: #333;
@@ -109,7 +115,7 @@ inputGraph.vertices.forEach(function(vertex) {
   if (result.length > 50) {
     result = result.substr(0, 50) + "...";
   }
-  label += "<h3>" + result + "</h3>";
+  label += "<h3>" + result.replace("EXCEPTION", "") + "</h3>";
 
   curclass = "node";
   // Hack
