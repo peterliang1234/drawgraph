@@ -108,15 +108,23 @@ var g = new dagreD3.graphlib.Graph().setGraph({});
 var inputGraphRaw = document.querySelector("#inputGraph").value;
 var inputGraph = JSON.parse(inputGraphRaw);
 
+var totalTime = 0.0;
+inputGraph.vertices.forEach(function (vertex) {
+  totalTime += vertex.runningTime;
+});
+
 var vertexId = 0;
 inputGraph.vertices.forEach(function(vertex) { 
-  label = "<h2>" + vertex.name + "</h2>";
+  label = "<h2>" + vertex.name + " [" 
+    + vertex.runningTime + " ms, "
+    + (vertex.runningTime / totalTime).toFixed(3)
+    + "%]</h2>";
+
   result = vertex.result
   if (result.length > 50) {
     result = result.substr(0, 50) + "...";
   }
   label += "<h3>" + result.replace("EXCEPTION", "") + "</h3>";
-  label += "<h2>" + vertex.runningTime / 100 + "s" + "</h2>"
 
   curclass = "node";
   // Hack
