@@ -102,9 +102,11 @@
   </svg>
 
   <script>
-    // Create a new directed graph
-var g = new dagreD3.graphlib.Graph().setGraph({});
 
+function tryDraw() {
+	    // Create a new directed graph
+	var g = new dagreD3.graphlib.Graph().setGraph({});
+	
 var inputGraphRaw = document.querySelector("#inputGraph").value;
 var inputGraph = JSON.parse(inputGraphRaw);
 
@@ -170,5 +172,6 @@ zoom
   .scale(initialScale)
   .event(svg);
 svg.attr('height', g.graph().height * initialScale + 40);
+}
   </script>
   
