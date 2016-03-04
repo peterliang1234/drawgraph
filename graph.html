@@ -106,7 +106,7 @@
 function tryDraw() {
 	    // Create a new directed graph
 	var g = new dagreD3.graphlib.Graph().setGraph({});
-	
+
 var inputGraphRaw = document.querySelector("#inputGraph").value;
 var inputGraph = JSON.parse(inputGraphRaw);
 
@@ -116,8 +116,8 @@ inputGraph.vertices.forEach(function (vertex) {
 });
 
 var vertexId = 0;
-inputGraph.vertices.forEach(function(vertex) { 
-  label = "<h2>" + vertex.name + " [" 
+inputGraph.vertices.forEach(function(vertex) {
+  label = "<h2>" + vertex.name + " ["
     + vertex.runningTime + " ms, "
     + (vertex.runningTime * 100 / totalTime).toFixed(3)
     + "%]</h2>";
@@ -136,7 +136,7 @@ inputGraph.vertices.forEach(function(vertex) {
     curClass ="nodeNoException";
   }
 
-  g.setNode(vertexId, 
+  g.setNode(vertexId,
       {
         labelType: "html",
         label: label,
@@ -145,7 +145,7 @@ inputGraph.vertices.forEach(function(vertex) {
         padding: 10,
         class: curClass
       }
-    );  
+    );
   vertexId+=1;
 });
 inputGraph.edges.forEach(function(edge) {g.setEdge(edge[1], edge[0], {label : ""});});
@@ -169,9 +169,8 @@ render(inner, g);
 var initialScale = 0.75;
 zoom
   .translate([(svg.attr("width") - g.graph().width * initialScale) / 2, 20])
-  .scale(initialScale)
   .event(svg);
 svg.attr('height', g.graph().height * initialScale + 40);
 }
   </script>
-  
+
